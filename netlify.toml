@@ -1,5 +1,5 @@
 [build]
-  publish = "practical-line-web"
+  publish = "practical-line-web/src"
 
 [[redirects]]
   from = "/"
