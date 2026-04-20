@@ -1,7 +1,0 @@
-[build]
-  publish = "practical-line-web/src"
-
-[[redirects]]
-  from = "/"
-  to = "/src/home.html"
-  status = 200
