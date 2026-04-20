@@ -4,17 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lobby - Linha Prática</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="home.css" />
   </head>
 
   <body>
     <header>
       <div class="logo">
-        <img src="logo.jpg" alt="Logo do site">
+        <a href="#">
+          <img src="../assets/logo.png" alt="Logo Beira Linha" />
+        </a>
       </div>
 
       <nav>
-        <a href="#">Currículo</a>
+        <a
+          href="https://docs.google.com/document/d/1rvRuvfz10VywR6DqIofvpmC5S_-FxrstKPGlwAqpZd4/edit?usp=sharing"
+          target="_blank"
+          >Cronograma</a
+        >
         <a href="#">Recursos</a>
       </nav>
     </header>
@@ -23,36 +30,34 @@
       <section>
         <h1>PROJETO BEIRA LINHA.</h1>
         <p>
-          Há 22 anos promovendo ação social e educação nas comunidades do entorno da linha do trem.
+          Há 22 anos promovendo ação social e educação nas comunidades do
+          entorno da linha do trem.
         </p>
       </section>
 
       <section class="cards">
+        <h2>Módulos</h2>
         <div class="card destaque">
-          <p>Módulo 01</p>
-          <h2>Dia 1: Introdução ao HTML</h2>
-          <button class="btn-roteiro">Ver roteiro →</button>
+          <h3>Dia 1: Introdução ao HTML</h3>
+          <a class="btn-roteiro" href="activity.html">Ver roteiro →</a>
         </div>
 
-        <div class="grid-3">
+        <!-- <div class="grid-3">
           <div class="card">
-            <p>Módulo 01</p>
-            <h2>Dia 2: O poder do CSS</h2>
+            <h3>Dia 2: O poder do CSS</h3>
             <button class="btn-roteiro">Ver roteiro →</button>
           </div>
 
           <div class="card">
-            <p>Módulo 02</p>
-            <h2>Dia 3: Flexbox & Grid</h2>
+            <h3>Dia 3: Flexbox & Grid</h3>
             <button class="btn-roteiro">Ver roteiro →</button>
           </div>
 
           <div class="card">
-            <p>Módulo 02</p>
-            <h2>Dia 4: Tipografia na web</h2>
+            <h3>Dia 4: Tipografia na web</h3>
             <button class="btn-roteiro">Ver roteiro →</button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
 
