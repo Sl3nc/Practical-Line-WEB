@@ -44,7 +44,6 @@ main section {
 }
 
 main section:hover {
-  transform: translateY(-3px);
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
 }
 
@@ -79,6 +78,52 @@ main section img {
   border: 1px solid #dce6f2;
   border-radius: 12px;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+main section pre {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+main section code {
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+main section .code-block {
+  position: relative;
+  margin: 16px 0;
+}
+
+main section .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  z-index: 1;
+}
+
+main section .copy-btn:active {
+  transform: scale(0.98);
+}
+
+main section .copy-btn.copied {
+  background-color: #10b981;
 }
 
 @media (max-width: 768px) {
