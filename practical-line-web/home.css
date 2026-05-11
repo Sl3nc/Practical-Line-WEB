@@ -21,6 +21,11 @@ main {
   margin-top: 60px;
 }
 
+.cards h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 16px;
+}
+
 .card {
   border: 1px solid #e5e5e5;
   border-radius: 12px;
@@ -30,11 +35,6 @@ main {
 
 .card:hover {
   border-color: #ccc;
-}
-
-.destaque {
-  width: 320px;
-  margin-bottom: 40px;
 }
 
 .grid-3 {
@@ -80,9 +80,5 @@ main {
 
   .grid-3 {
     grid-template-columns: 1fr;
-  }
-
-  .destaque {
-    width: 100%;
   }
 }
