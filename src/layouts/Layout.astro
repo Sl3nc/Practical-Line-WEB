@@ -1,0 +1,28 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+interface Props {
+  /** Título exibido na aba do navegador. */
+  title: string;
+  /** Destino do link do logo no cabeçalho. */
+  logoHref: string;
+}
+
+const { title, logoHref } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header logoHref={logoHref} />
+    <slot />
+    <Footer />
+  </body>
+</html>

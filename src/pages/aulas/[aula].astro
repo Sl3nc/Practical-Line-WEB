@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ExerciseSection from "../../components/ExerciseSection";
+import CodeBlock from "../../components/CodeBlock";
+import { aulas, type Aula } from "../../data/aulas";
+import "../../styles/activity.css";
+
+export function getStaticPaths() {
+  return aulas.map((aula) => ({
+    params: { aula: String(aula.number) },
+    props: { aula },
+  }));
+}
+
+interface Props {
+  aula: Aula;
+}
+
+const { aula } = Astro.props;
+---
+
+<Layout title={`Atividade Aula ${aula.number}- Linha Prática`} logoHref="/">
+  <main>
+    <h1>{aula.heading}</h1>
+    {
+      aula.exercises.map(({ code, ...exercise }) => (
+        <ExerciseSection {...exercise}>
+          {code && <CodeBlock client:load code={code} />}
+        </ExerciseSection>
+      ))
+    }
+  </main>
+</Layout>
