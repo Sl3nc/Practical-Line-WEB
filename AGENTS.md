@@ -52,16 +52,15 @@ export const aulas: Aula[];
 ### Convenções e invariantes
 
 - **Nova aula:** adicione um objeto em `aulas` e as imagens em `public/assets/`. Não crie páginas avulsas por aula.
-- **Imagens:** use `<img>` com caminho de `public/`. **Não** use `astro:assets`/`<Image>` nas imagens de exercício: ele injeta `width`/`height`, e o CSS (`width: 100%` sem `height: auto`) distorceria a imagem.
-- **Estrutura do DOM:** as `<section>` de exercício devem ser filhas diretas de `<main>`, porque o CSS depende de `main section:last-of-type`. Mantenha os nomes de classe existentes.
 - **Interatividade:** só hidrate o que for interativo, preferindo `client:load` em controles que o usuário usa logo ao abrir a página. O padrão é zero JavaScript.
 - **Componentes:** a UI vai em React (`.tsx`, `export default function`). Arquivos `.astro` ficam restritos a layout e páginas (roteamento, `getStaticPaths`, imports de CSS).
-- **Sem regressões visuais:** ao refatorar, compare com o estado anterior (screenshots via Chrome DevTools MCP em 1280px e 375px).
 
 ## Development
 
+Initializate new servers with background flag:
+
 ```
-pnpm astro dev
+pnpm astro dev --background
 ```
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
