@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: ^7.4.10
         version: 7.4.10(@netlify/blobs@11.1.9(supports-color@7.2.0))(esbuild@0.28.1)(yaml@2.9.1)
+      jotai:
+        specifier: ^3.0.2
+        version: 3.0.2(@types/react@19.3.0)(react@19.3.1)
       react:
         specifier: ^19.3.1
         version: 19.3.1
@@ -2239,6 +2242,18 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+
+  jotai@3.0.2:
+    resolution: {integrity: sha512-1h+H6BQN+D048zv8hRGVeNxghxRLFZCB+l2WhFe7RhRiF0JlC8516G2BtRUXhPvMQTGB9OHst2N/BW9aNpp5aA==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      react: '>=18.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -5824,6 +5839,11 @@ snapshots:
   isarray@2.0.5: {}
 
   isexe@2.0.0: {}
+
+  jotai@3.0.2(@types/react@19.3.0)(react@19.3.1):
+    optionalDependencies:
+      '@types/react': 19.3.0
+      react: 19.3.1
 
   js-tokens@4.0.0: {}
 

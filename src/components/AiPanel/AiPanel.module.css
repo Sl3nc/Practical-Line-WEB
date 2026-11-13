@@ -1,0 +1,9 @@
+.container{
+  background-color: red;
+  width: 0;
+  transition: width 2s;
+}
+
+.container[data-open=true]{
+  width: 500px;
+}

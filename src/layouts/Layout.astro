@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { PanelButton } from "../components/PanelButton/PanelButton";
+import { IAPanel } from "../components/AiPanel/AIPanel";
 
 interface Props {
   /** Título exibido na aba do navegador. */
@@ -22,7 +24,11 @@ const { title, logoHref } = Astro.props;
   </head>
   <body>
     <Header logoHref={logoHref} />
-    <slot />
+    <div style="display: flex;">
+      <slot />
+      <IAPanel client:load/>
+    </div>
+    <PanelButton client:load/>
     <Footer />
   </body>
 </html>
