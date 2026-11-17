@@ -23,12 +23,9 @@ const { title, logoHref } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Header logoHref={logoHref} />
-    <div style="display: flex;">
-      <slot />
-      <IAPanel client:load/>
-    </div>
-    <PanelButton client:load/>
+    <Header logoHref={logoHref} client:load/>
+    <slot />
     <Footer />
+    <IAPanel client:load />
   </body>
 </html>

@@ -1,11 +1,11 @@
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { panelOpenAtom } from "../../state/atoms";
 import styles from "./PanelButton.module.css";
 
 export function PanelButton() {
-  const [panelOpen, setPanelOpen] = useAtom(panelOpenAtom);
+  const setPanelOpen = useSetAtom(panelOpenAtom);
   return (
-    <button className={styles.container} onClick={() => setPanelOpen(!panelOpen)}>
+    <button className={styles.container} onClick={() => setPanelOpen(true)}>
       Abrir IA
     </button>
   );
