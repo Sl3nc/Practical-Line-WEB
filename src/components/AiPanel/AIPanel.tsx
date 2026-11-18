@@ -28,7 +28,7 @@ export function IAPanel() {
       onClose={() => setPanelOpen(false)}
     >
       <div className={styles.content}>
-      <MessageArea messages={messagesTuple} />
+        <MessageArea messages={messagesTuple} />
         <PanelForm setMessageTuple={setMessageTuple} />
       </div>
     </dialog>
