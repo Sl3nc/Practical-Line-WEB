@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.textInput {
+  flex: 1;
+}
+
+.submitButton {
+  padding: 2.5%;
+}

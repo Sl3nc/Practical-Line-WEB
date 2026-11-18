@@ -1,15 +1,24 @@
-.container{
-  background-color: red;
-  width: 550px;
+.container {
+  background-color: #0b65a0;
+  width: 500px;
   height: 100vh;
   transition: width 2s;
   margin-left: auto;
+  border: 0;
+  padding: 1%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .container::backdrop {
   background-color: #00000062;
 }
 
-.container[open]{
+/*.container[open] {
   width: 500px;
-}
+}*/

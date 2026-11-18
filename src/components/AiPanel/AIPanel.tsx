@@ -1,10 +1,14 @@
 import { useAtom } from "jotai";
 import { panelOpenAtom } from "../../state/atoms";
 import styles from "./AiPanel.module.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { MessageArea } from "../MessageArea/MessageArea";
+import { PanelForm } from "../PanelForm/PanelForm";
 
 export function IAPanel() {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const [messagesTuple, setMessageTuple] = useState<string[]>([]);
+
   const [panelOpen, setPanelOpen] = useAtom(panelOpenAtom);
 
   useEffect(() => {
@@ -23,9 +27,10 @@ export function IAPanel() {
       ref={dialogRef}
       onClose={() => setPanelOpen(false)}
     >
-      <form method="dialog">
-        <input />
-      </form>
+      <div className={styles.content}>
+      <MessageArea messages={messagesTuple} />
+        <PanelForm setMessageTuple={setMessageTuple} />
+      </div>
     </dialog>
   );
 }
