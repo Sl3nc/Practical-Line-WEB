@@ -4,10 +4,11 @@ import styles from "./AiPanel.module.css";
 import { useEffect, useRef, useState } from "react";
 import { MessageArea } from "../MessageArea/MessageArea";
 import { PanelForm } from "../PanelForm/PanelForm";
+import type { Message } from "../../models/Message";
 
 export function IAPanel() {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [messagesTuple, setMessageTuple] = useState<string[]>([]);
+  const [messagesTuple, setMessageTuple] = useState<Message[]>([]);
 
   const [panelOpen, setPanelOpen] = useAtom(panelOpenAtom);
 
