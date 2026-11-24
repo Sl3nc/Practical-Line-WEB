@@ -1,4 +1,5 @@
 ---
+import { getImage } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import ExerciseSection from "../../components/ExerciseSection";
 import CodeBlock from "../../components/CodeBlock";
@@ -17,13 +18,29 @@ interface Props {
 }
 
 const { aula } = Astro.props;
+
+const exercises = await Promise.all(
+  aula.exercises.map(async (exercise, index) => ({
+    ...exercise,
+    image: await getImage({
+      src: exercise.image.src,
+      alt: exercise.image.alt,
+      width: 620,
+      widths: [620, 1240],
+      sizes: "(min-width: 620px) 620px, 100vw",
+      format: "webp",
+      quality: 80,
+      priority: index < 2,
+    }),
+  })),
+);
 ---
 
 <Layout title={`Atividade Aula ${aula.number}- Linha Prática`} logoHref="/">
   <main>
     <h1>{aula.heading}</h1>
     {
-      aula.exercises.map(({ code, ...exercise }) => (
+      exercises.map(({ code, ...exercise }) => (
         <ExerciseSection {...exercise}>
           {code && <CodeBlock client:load code={code} />}
         </ExerciseSection>

@@ -1,8 +1,9 @@
+import type { GetImageResult } from "astro";
 import type { ReactNode } from "react";
 import type { Exercise } from "../data/aulas";
 
-interface ExerciseSectionProps extends Omit<Exercise, "code"> {
-  /** Conteúdo extra entre o enunciado e o resultado (ex.: ilha CodeBlock). */
+interface ExerciseSectionProps extends Omit<Exercise, "code" | "image"> {
+  image: GetImageResult;
   children?: ReactNode;
 }
 
@@ -21,7 +22,7 @@ export default function ExerciseSection({
       {children}
 
       {showResultLabel && <h3>Resultado Esperado:</h3>}
-      <img src={image.src} alt={image.alt} />
+      <img {...image.attributes} src={image.src} srcSet={image.srcSet.attribute} />
     </section>
   );
 }

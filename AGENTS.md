@@ -13,8 +13,9 @@ Idioma: todo o conteúdo e a interface são em **português (pt-BR)**.
 ### Estrutura de pastas
 
 ```text
-public/assets/            # Imagens servidas como estão (logo + resultados esperados)
+public/assets/            # Imagens servidas como estão (logo)
 src/
+├── assets/               # Imagens de resultado (importadas e otimizadas pelo Astro)
 ├── data/aulas.tsx        # Fonte única de conteúdo (tipos + dados)
 ├── layouts/Layout.astro  # Esqueleto HTML comum
 ├── pages/
@@ -35,7 +36,7 @@ export interface Exercise {
   title: string;               // h2 do exercício
   description: ReactNode;      // enunciado (p). Use JSX só quando houver HTML inline (links, <br />)
   code?: string;               // código exibido no CodeBlock (template string; quebras/indentação são preservadas)
-  image: { src: string; alt: string }; // src absoluto a partir de /assets/...
+  image: { src: ImageMetadata; alt: string }; // importada de src/assets via image("arquivo.png")
   showResultLabel?: boolean;   // rótulo "Resultado Esperado:" (padrão true)
 }
 
@@ -51,7 +52,7 @@ export const aulas: Aula[];
 
 ### Convenções e invariantes
 
-- **Nova aula:** adicione um objeto em `aulas` e as imagens em `public/assets/`. Não crie páginas avulsas por aula.
+- **Nova aula:** adicione um objeto em `aulas` e as imagens em `src/assets/`. Não crie páginas avulsas por aula.
 - **Interatividade:** só hidrate o que for interativo, preferindo `client:load` em controles que o usuário usa logo ao abrir a página. O padrão é zero JavaScript.
 - **Componentes:** a UI vai em React (`.tsx`, `export default function`). Arquivos `.astro` ficam restritos a layout e páginas (roteamento, `getStaticPaths`, imports de CSS).
 

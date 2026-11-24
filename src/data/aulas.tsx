@@ -1,4 +1,17 @@
+import type { ImageMetadata } from "astro";
 import type { ReactNode } from "react";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/*.png", {
+  eager: true,
+});
+
+function image(filename: string): ImageMetadata {
+  const asset = images[`../assets/${filename}`];
+  if (!asset) {
+    throw new Error(`Imagem não encontrada em src/assets: ${filename}`);
+  }
+  return asset.default;
+}
 
 export interface Exercise {
   /** Título do exercício (h2). */
@@ -7,8 +20,8 @@ export interface Exercise {
   description: ReactNode;
   /** Código de apoio exibido em um bloco copiável (opcional). */
   code?: string;
-  /** Imagem de resultado esperado. */
-  image: { src: string; alt: string };
+  /** Imagem de resultado esperado (importada de `src/assets` para otimização). */
+  image: { src: ImageMetadata; alt: string };
   /** Exibe o rótulo "Resultado Esperado:" antes da imagem. Padrão: true. */
   showResultLabel?: boolean;
 }
@@ -33,31 +46,31 @@ export const aulas: Aula[] = [
         title: "Exercício 1 - Link para Site Externo",
         description:
           "Crie uma página contendo um título e um parágrafo com um link que leve para o site do Google. O link deve abrir em uma nova aba.",
-        image: { src: "/assets/at1.png", alt: "Resultado esperado do exercício 1" },
+        image: { src: image("at1.png"), alt: "Resultado esperado do exercício 1" },
       },
       {
         title: "Exercício 2 - Inserindo uma Imagem",
         description:
           "Crie uma página com um título e insira uma imagem utilizando a tag img. Adicione também o atributo alt descrevendo a imagem.",
-        image: { src: "/assets/at2.png", alt: "Resultado esperado do exercício 2" },
+        image: { src: image("at2.png"), alt: "Resultado esperado do exercício 2" },
       },
       {
         title: "Exercício 3 - Imagem com Link",
         description:
           "Crie uma página com uma imagem clicável. Ao clicar na imagem, o usuário deve ser direcionado para o site do YouTube.",
-        image: { src: "/assets/at3.png", alt: "Resultado esperado do exercício 3" },
+        image: { src: image("at3.png"), alt: "Resultado esperado do exercício 3" },
       },
       {
         title: "Exercício 4 - Estruturação de Página",
         description:
           "Crie uma página utilizando as tags semânticas: header, nav, main e footer. Dentro do nav, adicione três links fictícios.",
-        image: { src: "/assets/at4.png", alt: "Resultado esperado do exercício 4" },
+        image: { src: image("at4.png"), alt: "Resultado esperado do exercício 4" },
       },
       {
         title: "Exercício 5 - Página com Links Internos",
         description:
           "Crie uma página com um menu no topo contendo links que levam para diferentes seções da mesma página.",
-        image: { src: "/assets/at5.png", alt: "Resultado esperado do exercício 5" },
+        image: { src: image("at5.png"), alt: "Resultado esperado do exercício 5" },
       },
     ],
   },
@@ -70,43 +83,43 @@ export const aulas: Aula[] = [
         title: "Exercício 1 - Estilizando Parágrafos com Seletor de Tipo",
         description:
           "Utilize seletor de tipo para estilizar todos os parágrafos (p) com cor azul e tamanho da fonte 18px.",
-        image: { src: "/assets/atv1-2.png", alt: "Resultado esperado do exercício 1" },
+        image: { src: image("atv1-2.png"), alt: "Resultado esperado do exercício 1" },
       },
       {
         title: "Exercício 2 - Combinando Seletor de ID e Classe",
         description:
           "Utilize o seletor de ID para deixar o título com cor azul e tamanho de 28px. Além disso, use o seletor de classe para deixar os parágrafos com cor vermelha e tamanho 18px.",
-        image: { src: "/assets/atv2-2.png", alt: "Resultado esperado do exercício 2" },
+        image: { src: image("atv2-2.png"), alt: "Resultado esperado do exercício 2" },
       },
       {
         title: "Exercício 3 - Classe Destaque com Contraste",
         description:
           'Use a classe "destaque" e deixe os elementos que a possuírem com a cor verde e fundo amarelo.',
-        image: { src: "/assets/atv3-2.png", alt: "Resultado esperado do exercício 3" },
+        image: { src: image("atv3-2.png"), alt: "Resultado esperado do exercício 3" },
       },
       {
         title: "Exercício 4 - Prioridade entre Classes no Mesmo Elemento",
         description:
           'Declare dois parágrafos, atribua a classe "um" em ambos, mas apenas no segundo atribua também a classe "dois". Para a classe "um", atribua a cor vermelha e fundo verde. Para a classe "dois", atribua a cor azul, que deve ser visível.',
-        image: { src: "/assets/atv4-2.png", alt: "Resultado esperado do exercício 4" },
+        image: { src: image("atv4-2.png"), alt: "Resultado esperado do exercício 4" },
       },
       {
         title: "Exercício 5 - Estilizando Link por Atributo",
         description:
           'Deixe o link que possuir o atributo target="_blank" com fundo cinza e cor branca.',
-        image: { src: "/assets/atv5-2.png", alt: "Resultado esperado do exercício 5" },
+        image: { src: image("atv5-2.png"), alt: "Resultado esperado do exercício 5" },
       },
       {
         title: "Exercício 6 - Título Centralizado com Seletor de ID",
         description:
           "Utilize seletor de ID para estilizar um título com cor vermelha e alinhamento central.",
-        image: { src: "/assets/atv6-2.png", alt: "Resultado esperado do exercício 6" },
+        image: { src: image("atv6-2.png"), alt: "Resultado esperado do exercício 6" },
       },
       {
         title: "Exercício 7 - Fonte Global com Seletor Universal",
         description:
           'Utilize o seletor universal para definir a fonte padrão como "Verdana" com tamanho da fonte 16px.',
-        image: { src: "/assets/atv7-2.png", alt: "Resultado esperado do exercício 7" },
+        image: { src: image("atv7-2.png"), alt: "Resultado esperado do exercício 7" },
       },
     ],
   },
@@ -120,7 +133,7 @@ export const aulas: Aula[] = [
         description:
           "Crie três regras CSS diferentes que alterem a cor do texto desse elemento. Cada regra deve ter um nível de prioridade diferente.",
         code: `<p id="principal" class="texto">Exemplo de texto</p>`,
-        image: { src: "/assets/atv1-3.png", alt: "Resultado esperado do exercício 1" },
+        image: { src: image("atv1-3.png"), alt: "Resultado esperado do exercício 1" },
       },
       {
         title: "Exercício 2 - Relações entre Elementos",
@@ -133,7 +146,7 @@ export const aulas: Aula[] = [
   </section>
 </div>
 <p>Parágrafo fora</p>`,
-        image: { src: "/assets/atv2-3.png", alt: "Resultado esperado do exercício 2" },
+        image: { src: image("atv2-3.png"), alt: "Resultado esperado do exercício 2" },
       },
       {
         title: "Exercício 3 - Combinação de Relações",
@@ -144,7 +157,7 @@ export const aulas: Aula[] = [
   <p>Parágrafo 1</p>
   <p>Parágrafo 2</p>
 </section>`,
-        image: { src: "/assets/atv3-3.png", alt: "Resultado esperado do exercício 3" },
+        image: { src: image("atv3-3.png"), alt: "Resultado esperado do exercício 3" },
       },
       {
         title: "Exercício 4 - Aplicação Global e Sobrescrita",
@@ -153,7 +166,7 @@ export const aulas: Aula[] = [
         code: `<h1>Título</h1>
 <p>Parágrafo</p>
 <span>Texto em destaque</span>`,
-        image: { src: "/assets/atv4-3.png", alt: "Resultado esperado do exercício 4" },
+        image: { src: image("atv4-3.png"), alt: "Resultado esperado do exercício 4" },
       },
       {
         title: "Exercício 5 - Agrupamento com Contexto",
@@ -168,7 +181,7 @@ export const aulas: Aula[] = [
   <h1>Título dentro da section</h1>
   <p>Parágrafo dentro da section</p>
 </section>`,
-        image: { src: "/assets/atv5-3.png", alt: "Resultado esperado do exercício 5" },
+        image: { src: image("atv5-3.png"), alt: "Resultado esperado do exercício 5" },
       },
       {
         title: "Exercício 6 - Elementos Internos",
@@ -177,7 +190,7 @@ export const aulas: Aula[] = [
   <p>Parágrafo dentro da div</p>
 </div>
 <p>Parágrafo fora da div</p>`,
-        image: { src: "/assets/atv6-3.png", alt: "Resultado esperado do exercício 6" },
+        image: { src: image("atv6-3.png"), alt: "Resultado esperado do exercício 6" },
       },
       {
         title: "Exercício 7 - Relação Direta",
@@ -189,7 +202,7 @@ export const aulas: Aula[] = [
     <p>Parágrafo interno</p>
   </div>
 </section>`,
-        image: { src: "/assets/atv7-3.png", alt: "Resultado esperado do exercício 7" },
+        image: { src: image("atv7-3.png"), alt: "Resultado esperado do exercício 7" },
       },
       {
         title: "Exercício 8 - Irmãos em Diferentes Contextos",
@@ -211,7 +224,7 @@ export const aulas: Aula[] = [
 </div>
 
 <p>Parágrafo 4</p>`,
-        image: { src: "/assets/atv8-3.png", alt: "Resultado esperado do exercício 8" },
+        image: { src: image("atv8-3.png"), alt: "Resultado esperado do exercício 8" },
       },
     ],
   },
@@ -227,7 +240,7 @@ export const aulas: Aula[] = [
         code: `<div class="container">
   <div class="box">Conteúdo</div>
 </div>`,
-        image: { src: "/assets/atv1-4.png", alt: "Resultado esperado do exercício 1" },
+        image: { src: image("atv1-4.png"), alt: "Resultado esperado do exercício 1" },
       },
       {
         title: "Exercício 2 - Tamanho 2",
@@ -236,7 +249,7 @@ export const aulas: Aula[] = [
         code: `<div class="card">
   Caixa de exemplo
 </div>`,
-        image: { src: "/assets/atv2-4.png", alt: "Resultado esperado do exercício 2" },
+        image: { src: image("atv2-4.png"), alt: "Resultado esperado do exercício 2" },
       },
       {
         title: "Exercício 3 - Fonte 1",
@@ -244,7 +257,7 @@ export const aulas: Aula[] = [
           "Defina um tamanho de fonte relativo ao elemento <html>, mantendo o valor previsível independentemente da hierarquia dos elementos.",
         code: `<h1>Título Principal</h1>
 <p>Texto secundário</p>`,
-        image: { src: "/assets/atv3-4.png", alt: "Resultado esperado do exercício 3" },
+        image: { src: image("atv3-4.png"), alt: "Resultado esperado do exercício 3" },
       },
       {
         title: "Exercício 4 - Fonte 2",
@@ -257,7 +270,7 @@ export const aulas: Aula[] = [
     <p>Parágrafo interno</p>
   </div>
 </div>`,
-        image: { src: "/assets/atv4-4.png", alt: "Resultado esperado do exercício 4" },
+        image: { src: image("atv4-4.png"), alt: "Resultado esperado do exercício 4" },
       },
       {
         title: "Exercício 5 - Viewport",
@@ -266,7 +279,7 @@ export const aulas: Aula[] = [
         code: `<section class="hero">
   <h1>Tela Inicial</h1>
 </section>`,
-        image: { src: "/assets/atv5-4.png", alt: "Resultado esperado do exercício 5" },
+        image: { src: image("atv5-4.png"), alt: "Resultado esperado do exercício 5" },
       },
       {
         title: "Exercício 6 - Padding Interno",
@@ -275,7 +288,7 @@ export const aulas: Aula[] = [
         code: `<div class="box">
   Conteúdo interno
 </div>`,
-        image: { src: "/assets/atv8-4.png", alt: "Resultado esperado do exercício 8" },
+        image: { src: image("atv8-4.png"), alt: "Resultado esperado do exercício 8" },
       },
       {
         title: "Exercício 7 - Margin Externa",
@@ -283,7 +296,7 @@ export const aulas: Aula[] = [
           "Crie espaçamento externo entre duas caixas utilizando margin, veja o conflito de margens ocorrer.",
         code: `<div class="box">Caixa 1</div>
 <div class="box">Caixa 2</div>`,
-        image: { src: "/assets/atv9-4.png", alt: "Resultado esperado do exercício 9" },
+        image: { src: image("atv9-4.png"), alt: "Resultado esperado do exercício 9" },
       },
       {
         title: "Exercício 8 - Border-Box",
@@ -292,7 +305,7 @@ export const aulas: Aula[] = [
         code: `<div class="card">
   Cartão de conteúdo
 </div>`,
-        image: { src: "/assets/atv10-4.png", alt: "Resultado esperado do exercício 10" },
+        image: { src: image("atv10-4.png"), alt: "Resultado esperado do exercício 10" },
       },
     ],
   },
@@ -305,13 +318,13 @@ export const aulas: Aula[] = [
         title: "Exercício 1 - Elementos 1",
         description:
           "Use uma tag HTML que permite ocupar toda a largura disponível da página e exibir cada item em uma linha separada, sem usar CSS.",
-        image: { src: "/assets/atv1-8.png", alt: "Resultado esperado do exercício 1" },
+        image: { src: image("atv1-8.png"), alt: "Resultado esperado do exercício 1" },
       },
       {
         title: "Exercício 2 - Elementos 2",
         description:
           "Escolha uma tag HTML que permita que os elementos permaneçam na mesma linha, sem quebrar o fluxo do texto, sem usar CSS.",
-        image: { src: "/assets/atv2-8.png", alt: "Resultado esperado do exercício 2" },
+        image: { src: image("atv2-8.png"), alt: "Resultado esperado do exercício 2" },
       },
       {
         title: "Exercício 3 - Elementos 3",
@@ -320,7 +333,7 @@ export const aulas: Aula[] = [
         code: `<button>Salvar</button>
 <button>Editar</button>
 <button>Excluir</button>`,
-        image: { src: "/assets/atv3-8.png", alt: "Resultado esperado do exercício 3" },
+        image: { src: image("atv3-8.png"), alt: "Resultado esperado do exercício 3" },
       },
       {
         title: "Exercício 4 - Removendo Elementos",
@@ -328,7 +341,7 @@ export const aulas: Aula[] = [
         code: `<h2>Painel</h2>
 <p class="aviso">Mensagem de aviso</p>
 <p>Conteúdo principal</p>`,
-        image: { src: "/assets/atv4-8.png", alt: "Resultado esperado do exercício 4" },
+        image: { src: image("atv4-8.png"), alt: "Resultado esperado do exercício 4" },
       },
       {
         title: "Exercício 5 - Elementos 4",
@@ -339,7 +352,7 @@ export const aulas: Aula[] = [
   <div>Card 2</div>
   <div>Card 3</div>
 </div>`,
-        image: { src: "/assets/atv5-8.png", alt: "Resultado esperado do exercício 6" },
+        image: { src: image("atv5-8.png"), alt: "Resultado esperado do exercício 6" },
       },
       {
         title: "Exercício 6 - Direção",
@@ -350,7 +363,7 @@ export const aulas: Aula[] = [
   <div>Item 2</div>
   <div>Item 3</div>
 </div>`,
-        image: { src: "/assets/atv6-8.png", alt: "Resultado esperado do exercício 7" },
+        image: { src: image("atv6-8.png"), alt: "Resultado esperado do exercício 7" },
       },
       {
         title: "Exercício 7 - Alinhamento",
@@ -359,7 +372,7 @@ export const aulas: Aula[] = [
         code: `<div class="container">
   <div>Login</div>
 </div>`,
-        image: { src: "/assets/atv7-8.png", alt: "Resultado esperado do exercício 8" },
+        image: { src: image("atv7-8.png"), alt: "Resultado esperado do exercício 8" },
       },
       {
         title: "Exercício 8 - Elementos 5",
@@ -371,7 +384,7 @@ export const aulas: Aula[] = [
   <div>3</div>
   <div>4</div>
 </div>`,
-        image: { src: "/assets/atv8-8.png", alt: "Resultado esperado do exercício 9" },
+        image: { src: image("atv8-8.png"), alt: "Resultado esperado do exercício 9" },
       },
       {
         title: "Exercício 9 - Colunas",
@@ -382,7 +395,7 @@ export const aulas: Aula[] = [
   <div>Produto 3</div>
   <div>Produto 4</div>
 </div>`,
-        image: { src: "/assets/atv9-8.png", alt: "Resultado esperado do exercício 10" },
+        image: { src: image("atv9-8.png"), alt: "Resultado esperado do exercício 10" },
       },
       {
         title: "Exercício 10 - Espaçamento",
@@ -392,7 +405,7 @@ export const aulas: Aula[] = [
   <div>Caixa 2</div>
   <div>Caixa 3</div>
 </div>`,
-        image: { src: "/assets/atv10-8.png", alt: "Resultado esperado do exercício 11" },
+        image: { src: image("atv10-8.png"), alt: "Resultado esperado do exercício 11" },
       },
       {
         title: "Exercício 11 - Elementos 6",
@@ -403,7 +416,7 @@ export const aulas: Aula[] = [
   <a href="#">Sobre</a>
   <a href="#">Contato</a>
 </div>`,
-        image: { src: "/assets/atv11-8.png", alt: "Resultado esperado do exercício 12" },
+        image: { src: image("atv11-8.png"), alt: "Resultado esperado do exercício 12" },
       },
       {
         title: "Exercício 12 - Escolhendo o Layout",
@@ -415,7 +428,7 @@ export const aulas: Aula[] = [
   <aside>Menu lateral</aside>
   <main>Conteúdo principal</main>
 </div>`,
-        image: { src: "/assets/atv12-8.png", alt: "Resultado esperado do exercício 13" },
+        image: { src: image("atv12-8.png"), alt: "Resultado esperado do exercício 13" },
       },
     ],
   },
@@ -436,7 +449,7 @@ export const aulas: Aula[] = [
           </>
         ),
         image: {
-          src: "/assets/freecodecamp_responsive_section.png",
+          src: image("freecodecamp_responsive_section.png"),
           alt: "Seção de design responsivo do curso FreeCodeCamp",
         },
         showResultLabel: false,
@@ -446,7 +459,7 @@ export const aulas: Aula[] = [
         description:
           "Aplique um estilo diferente ao botão quando o cursor do mouse estiver sobre ele.",
         code: `<button>Enviar</button>`,
-        image: { src: "/assets/atv1-9.png", alt: "Resultado esperado do exercício 1" },
+        image: { src: image("atv1-9.png"), alt: "Resultado esperado do exercício 1" },
       },
       {
         title: "Exercício 2 - Primeiro Item da Lista",
@@ -457,28 +470,28 @@ export const aulas: Aula[] = [
   <li>CSS</li>
   <li>JavaScript</li>
 </ul>`,
-        image: { src: "/assets/atv2-9.png", alt: "Resultado esperado do exercício 2" },
+        image: { src: image("atv2-9.png"), alt: "Resultado esperado do exercício 2" },
       },
       {
         title: "Exercício 3 - Primeira Letra",
         description:
           "Destaque visualmente apenas a primeira letra do texto apresentado.",
         code: `<p>Pseudo-elementos permitem estilizar partes específicas do conteúdo.</p>`,
-        image: { src: "/assets/atv3-9.png", alt: "Resultado esperado do exercício 3" },
+        image: { src: image("atv3-9.png"), alt: "Resultado esperado do exercício 3" },
       },
       {
         title: "Exercício 4 - Conteúdo Antes do Elemento",
         description:
           "Insira um símbolo antes do texto do parágrafo sem alterar o HTML original.",
         code: `<p>Item importante</p>`,
-        image: { src: "/assets/atv4-9.png", alt: "Resultado esperado do exercício 4" },
+        image: { src: image("atv4-9.png"), alt: "Resultado esperado do exercício 4" },
       },
       {
         title: "Exercício 5 - Link Visitado",
         description:
           "Aplique um estilo diferente aos links que já foram acessados pelo usuário.",
         code: `<a href="https://example.com">Visitar site</a>`,
-        image: { src: "/assets/atv5-9.png", alt: "Resultado esperado do exercício 5" },
+        image: { src: image("atv5-9.png"), alt: "Resultado esperado do exercício 5" },
       },
     ],
   },
