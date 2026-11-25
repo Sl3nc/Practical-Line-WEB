@@ -49,6 +49,23 @@ Adicione um novo objeto ao array `aulas` em [`src/data/aulas.tsx`](src/data/aula
 },
 ```
 
+## Painel de IA
+
+O chat do assistente envia a conversa para `/api/chat` (endpoint do servidor em `src/pages/api/chat.ts`), que consulta o Ollama em `http://127.0.0.1:11434` (servidor local, sem TLS). A chave nunca chega ao navegador.
+
+| Variável                | Obrigatória | Descrição                                                          |
+| :---------------------- | :---------- | :----------------------------------------------------------------- |
+| `OLLAMA_KEY`            | não         | Chave da API do Ollama hospedada; o Ollama local a ignora.         |
+| `OLLAMA_MODEL`          | não         | Modelo usado na conversa (padrão `lfm3:latest`).                    |
+| `OLLAMA_NUM_CTX`        | não         | Janela de contexto em tokens enviada ao Ollama (padrão `8192`).     |
+| `OLLAMA_HISTORY_CHARS`  | não         | Orçamento de caracteres do histórico enviado (padrão `24000`).      |
+
+O modelo precisa estar baixado no Ollama local (`ollama pull lfm3`). Localmente, defina as variáveis em um arquivo `.env` na raiz.
+
+O Ollama usa `num_ctx = 4096` por padrão, independentemente do contexto máximo anunciado pelo modelo, e trunca o excedente sem avisar. `OLLAMA_HISTORY_CHARS` precisa caber dentro de `OLLAMA_NUM_CTX` com folga para a resposta; aumentar o contexto também aumenta o tempo de resposta e o uso de memória.
+
+Atenção: como o endpoint aponta para `127.0.0.1`, o painel só funciona com o site rodando na mesma máquina do Ollama. Na Netlify (ou outro host), ajuste a constante `OLLAMA_ENDPOINT` em `src/pages/api/chat.ts` para uma URL acessível publicamente.
+
 ## Comandos
 
 | Comando        | Ação                                          |

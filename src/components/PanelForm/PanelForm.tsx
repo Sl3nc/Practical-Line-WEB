@@ -1,8 +1,8 @@
 import {
-  useRef,
   useState,
   type Dispatch,
   type FormEvent,
+  type RefObject,
   type SetStateAction,
 } from "react";
 import styles from "./PanelForm.module.css";
@@ -13,12 +13,13 @@ import { lodingInferenceAtom } from "../../state/atoms";
 
 export const PanelForm = ({
   setMessageTuple,
+  inputRef,
 }: {
   setMessageTuple: Dispatch<SetStateAction<Message[]>>;
+  inputRef: RefObject<HTMLInputElement | null>;
 }) => {
   const [text, setText] = useState<string>("");
   const [loadingInferece, setLoadingInferece] = useAtom(lodingInferenceAtom);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
