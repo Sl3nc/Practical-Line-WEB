@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ModuleCard from "../components/ModuleCard";
+import { aulas } from "../data/aulas";
+import "../styles/home.css";
+---
+
+<Layout title="Lobby - Linha Prática" logoHref="#">
+  <main>
+    <section>
+      <h1>PROJETO BEIRA LINHA.</h1>
+      <p>
+        Há 22 anos promovendo ação social e educação nas comunidades do entorno
+        da linha do trem.
+      </p>
+    </section>
+
+    <section class="cards grid-3">
+      <h2>Módulos</h2>
+      {
+        aulas.map((aula) => (
+          <ModuleCard title={aula.cardTitle} href={`/aulas/${aula.number}`} />
+        ))
+      }
+    </section>
+  </main>
+</Layout>

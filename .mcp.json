@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "ChromeDevTools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["--registry", "https://registry.npmjs.org", "chrome-devtools-mcp@1.7.0"]
+    }
+  }
+}
